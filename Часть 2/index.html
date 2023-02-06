@@ -1,49 +1,45 @@
 <html>
-
-<head>
-	<link rel="stylesheet" href="example.css">
-</head>
-
-<body>
-	<div class="container">
-		<img class="document" src="images/document.png">
-		<img class="document" src="images/document.png">
-		<img class="document" src="images/document.png">
-		<img class="document" src="images/document.png">
-	</div>
-	<div class="trashempty"></div>
-	<div class="trashempty" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-	<img class="document" id="img1" src="./images/document.png" ondragstart="drag(event)">
-	<div id="cont1" class="container" ondrop="restore(event)" ondragover="allowDrop(event)"></div>
-	<script>
-		function allowDrop(ev) {
-			ev.preventDefault();
-		}
-
-		function drag(ev) {
-			ev.dataTransfer.setData("text", ev.target.id);
-		}
-
-		function drop(ev) {
-			ev.preventDefault();
-			ev.target.className = "trashfull";
-			var data = ev.dataTransfer.getData("text");
-			var child = document.getElementById(data);
-			var parent = child.parentNode;
-			parent.removeChild(child);
-		}
-
-		function restore(ev) {
-			ev.preventDefault();
-			var img = document.createElement('img');
-			img.src = "images/documnet.png";
-			img.id = new Date().getTime();
-			img.className = 'document';
-			img.draggable = true;
-			img.addEventListener("dragstart", drag);
-			document.getElementById('cont1').appendChild(img);
-		}
-	</script>
-</body>
-
+  <head>
+    <link rel="stylesheet" href="example.css" />
+  </head>
+  <body>
+    <div
+      id="cont1"
+      class="container"
+      ondrop="restore(event)"
+      ondragover="allowDrop(event)"
+    >
+      <img
+        src="images/document.png"
+        alt=""
+        class="document"
+        id="img1"
+        ondragstart="drag(event)"
+      /><img
+        src="images/document.png"
+        alt=""
+        class="document"
+        id="img2"
+        ondragstart="drag(event)"
+      /><img
+        src="images/document.png"
+        alt=""
+        class="document"
+        id="img3"
+        ondragstart="drag(event)"
+      /><img
+        src="images/document.png"
+        alt=""
+        class="document"
+        id="img4"
+        ondragstart="drag(event)"
+      />
+    </div>
+    <div
+      class="trashempty"
+      ondrop="drop(event)"
+      ondragover="allowDrop(event)"
+    ></div>
+    <script src="./index.js"></script>
+  </body>
 </html>
